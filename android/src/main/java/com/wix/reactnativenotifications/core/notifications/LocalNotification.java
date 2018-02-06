@@ -1,6 +1,7 @@
 package com.wix.reactnativenotifications.core.notifications;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -131,6 +132,9 @@ public class LocalNotification implements ILocalNotification {
     protected Notification.Builder getNotificationBuilder(PendingIntent intent) {
         final Integer icon = mNotificationProps.getIcon();
 
+        final String packageName = mContext.getPackageName();
+        String channelId = packageName + "_channel";
+
         final Notification.Builder builder = new Notification.Builder(mContext)
                 .setContentTitle(mNotificationProps.getTitle())
                 .setContentText(mNotificationProps.getBody())
@@ -139,6 +143,19 @@ public class LocalNotification implements ILocalNotification {
                 .setContentIntent(intent)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create a notification channel
+            NotificationManager notificationManager =
+                    (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    packageName,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("A channel for " + packageName);
+            notificationManager.createNotificationChannel(channel);
+
+            builder.setChannelId(channelId);
+        }
 
         final Integer color = mNotificationProps.getColor();
 
