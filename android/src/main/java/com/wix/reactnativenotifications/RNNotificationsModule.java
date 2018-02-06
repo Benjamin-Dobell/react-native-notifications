@@ -24,6 +24,7 @@ import com.wix.reactnativenotifications.core.notificationdrawer.NotificationDraw
 import com.wix.reactnativenotifications.core.notifications.ILocalNotification;
 import com.wix.reactnativenotifications.core.notifications.LocalNotification;
 import com.wix.reactnativenotifications.core.notifications.NotificationProps;
+import com.wix.reactnativenotifications.core.notifications.OreoNotifications;
 import com.wix.reactnativenotifications.fcm.FcmTokenService;
 
 import static com.wix.reactnativenotifications.Defs.LOGTAG;
@@ -48,6 +49,7 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     @Override
     public void initialize() {
         Log.d(LOGTAG, "Native module init");
+        OreoNotifications.initialize(getReactApplicationContext().getApplicationContext());
         final INotificationDrawer notificationsDrawer = NotificationDrawer.get(getReactApplicationContext().getApplicationContext());
         notificationsDrawer.onAppInit();
     }
