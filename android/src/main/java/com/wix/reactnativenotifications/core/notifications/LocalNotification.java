@@ -146,6 +146,14 @@ public class LocalNotification implements ILocalNotification {
             builder.setColor(color);
         }
 
+        final String bigText = mNotificationProps.getBigText();
+
+        if (bigText != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setStyle(new Notification.BigTextStyle().bigText(bigText));
+        }
+
+        OreoNotifications.setChannel(mContext, builder);
+
         final Integer lightsColor = mNotificationProps.getLightsColor();
         final Integer lightsOnMs = mNotificationProps.getLightsOnMs();
         final Integer lightsOffMs = mNotificationProps.getLightsOffMs();

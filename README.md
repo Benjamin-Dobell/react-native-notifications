@@ -293,6 +293,7 @@ NotificationsAndroid.setNotificationOpenedListener((notification) => {
 - **`getLightsColor()`**- a `#rrggbb` formatted color that will set the color of the flashing notification LED on device's that have one. Typically this will only light-up if the device's screen is off when the notification is received.
 - **`getLightsOnMs()`**- how many milliseconds the notification LED should stay lit whilst flashing.
 - **`getLightsOffMs()`**- how many milliseconds the notification LED should stay unlit between flashes.
+- **`getBigText()`**- the notification's text to be shown in big text mode.
 ---
 
 #### Receiving Notifications in the Background
@@ -384,7 +385,7 @@ NotificationsAndroid.localNotification({
 ```
 The supported properties are:
 
-`data`, `title`, `body`, `icon`, `tag`, `sound`, `color`, `largeIcon`, `lightsColor`, `lightsOnMs` and `lightsOffMs`.
+`data`, `title`, `body`, `icon`, `tag`, `sound`, `color`, `largeIcon`, `lightsColor`, `lightsOnMs`, `lightsOffMs` and `bigText`.
 
 Please refer to the "Notification Object" section for details about each property.
 

@@ -59,4 +59,8 @@ export default class NotificationAndroid {
   getLightsOffMs() {
     return this.properties.lightsOffMs;
   }
+
+  getBigText() {
+    return this.properties.bigText;
+  }
 }

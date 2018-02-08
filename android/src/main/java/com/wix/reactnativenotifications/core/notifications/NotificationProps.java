@@ -21,6 +21,7 @@ public class NotificationProps {
     private static final String SOUND = "sound";
     private static final String TAG = "tag";
     private static final String COLOR = "color";
+    private static final String BIG_TEXT = "bigText";
 
     private static final String DATA = "data";
 
@@ -144,6 +145,11 @@ public class NotificationProps {
     @Nullable
     public Bundle getData() {
         return mProperties.getBundle(DATA);
+    }
+
+    @Nullable
+    public String getBigText() {
+        return mProperties.getString(BIG_TEXT);
     }
 
     public Bundle asBundle() {
